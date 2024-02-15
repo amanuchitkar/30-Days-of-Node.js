@@ -7,4 +7,7 @@ app.get('/', (req, res)=> {
 app.get('/about',(req,res)=>{
     res.send('You on about page')
 })
+app.get('/contact',(req,res)=>{
+  res.send("You are in contact page")
+})
 app.listen(3000,()=>console.log("Port is runing on 3000"))
