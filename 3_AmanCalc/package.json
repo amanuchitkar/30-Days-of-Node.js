@@ -9,6 +9,7 @@
   "author": "Aman",
   "license": "ISC",
   "dependencies": {
+    "amancalc": "^1.0.0",
     "user": "^0.0.0"
   }
 }
