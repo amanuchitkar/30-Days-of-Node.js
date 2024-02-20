@@ -34,15 +34,15 @@ app.get("/courses", (req, res) => {
   res.send(courses)
 })
 //create Opretions
-app.post("/courses", (req, res) => {
-  const course = {
-    id: courses.length + 1,
-    name: req.body.name
+// app.post("/courses", (req, res) => {
+//   const course = {
+//     id: courses.length + 1,
+//     name: req.body.name
 
-  }
-  courses.push(course)
-  res.send(course)
-})
+//   }
+//   courses.push(course)
+//   res.send(course)
+// })
 //Put Method
 
 app.put("/courses/:coursename",(req,res)=>{
@@ -54,6 +54,12 @@ app.put("/courses/:coursename",(req,res)=>{
 })
 // Update Data
 
+//Delete
+app.delete("courses/:coursename",(req,res)=>{
+  let course=courses.find(course=>course.name===req.params.coursename)
+  courses=UpdatedCourses
+  res.send(courses)
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`Port is runing on ${port}`))
