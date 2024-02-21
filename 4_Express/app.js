@@ -20,9 +20,9 @@ app.get('/contact', (req, res) => {
 })
 
 // Route parameters,Mulipel Route Handelinge
-app.get("/courses/:coursename",(req,res)=>{
+app.get("/courses/:coursename", (req, res) => {
   // let course=courses.find(course=>course.id===parseInt(req.params.id))
-  let course=courses.find(course => course.name===req.params.coursename)
+  let course = courses.find(course => course.name === req.params.coursename)
   console.log(course)
   // res.send(req.params.id)
   // res.send(req.params)
@@ -45,21 +45,30 @@ app.get("/courses", (req, res) => {
 // })
 //Put Method
 
-app.put("/courses/:coursename",(req,res)=>{
-  let course=courses.find(course=>course.name===req.params.coursename)
-  if (!course) res.status(404).send("The web page not found")
-  course.name=req.body.name
-  res.send(course)
+// app.put("/courses/:coursename", (req, res) => {
+//   let course = courses.find(course => course.name === req.params.coursename)
+//   if (!course) res.status(404).send("The web page not found")
+//   course.name = req.body.name
+// res.send(course)
 
-})
+// })
 // Update Data
 
 //Delete
-app.delete("courses/:coursename",(req,res)=>{
-  let course=courses.find(course=>course.name===req.params.coursename)
-  courses=UpdatedCourses
+app.delete("courses/:coursename", (req, res) => {
+  let UpdatedCourses = courses.filter(course => course.name !== req.params.coursename)
+  courses = UpdatedCourses
   res.send(courses)
 })
+// app.delete("/courses/:id",(req,res)=>{
+//   let course=courses.find(course=>course.id===parseInt(req.params.id))
+//   if (!course) res.status(404).send("The web page not found")
 
+//   const index=courses.indexOf(course)
+//   courses.splice(index,1)
+//   res.send(course)
+
+
+// })
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`Port is runing on ${port}`))
