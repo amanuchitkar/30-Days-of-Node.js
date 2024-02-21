@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const mymiddelware=require('./middel')
+
 const courses = [
   { id: 1, name: "javascript" },
   { id: 2, name: "java" },
@@ -7,7 +9,8 @@ const courses = [
   { id: 4, name: "c++" },
 ]
 app.use(express.json())
-
+//middelware
+app.use(mymiddelware)
 //get Metoud
 app.get('/', (req, res) => {
   res.send('Hello World')
