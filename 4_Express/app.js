@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
-const mymiddelware=require('./middel')
+const mymiddelware = require('./middel')
+const morgan = require('morgan')
 
 const courses = [
   { id: 1, name: "javascript" },
@@ -11,6 +12,8 @@ const courses = [
 app.use(express.json())
 //middelware
 app.use(mymiddelware)
+
+app.use(morgan('tiny'))
 //get Metoud
 app.get('/', (req, res) => {
   res.send('Hello World')
