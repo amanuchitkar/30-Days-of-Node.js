@@ -45,3 +45,6 @@ app.get('/api/categories/:id', (req, res) => {
     if (!category) return res.status(404).send("The web page not found");
     res.send(category);
 });
+
+const port = process.env.PORT || 3000
+app.listen(port, () => console.log(`Port is runing on ${port}`))
