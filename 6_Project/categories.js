@@ -1,4 +1,5 @@
-const express=require('express')
+const express=require('express');
+const Joi = require('Joi');
 
 const router=express.Router()
 
@@ -15,6 +16,8 @@ router.get('/api/categories', (req, res) => {
 });
 
 router.post('/api/categories', (req, res) => {
+    const {error}=validateData(req.body)
+    if (error) res.status(400).send(error.details[0].message)
     const category = {
         id: categories.length + 1,
         name: req.body.name
@@ -48,4 +51,10 @@ router.get('/api/categories/:id', (req, res) => {
     res.send(category);
 });
 
+function validateData(category) {
+    const schema={
+        name:Joi.string().min(3).required()
+    }
+    return Joi.validate(category,schema)
+}
 module.exports=router
