@@ -1,7 +1,9 @@
 const express = require('express')
+// const mymiddelware = require('./middel')
 
 const app = express()
 app.use(express.json())
+// app.use(mymiddelware)
 const categories = [
     { id: 1, name: 'web' },
     { id: 2, name: 'mobile' },
@@ -24,8 +26,8 @@ app.post('/api/categories', (req, res) => {
 app.put("/api/categories/:id", (req, res) => {
     const category = categories.find(c => c.id === parseInt(req.params.id));
     if (!category) return res.status(404).send("The web page not found")
-    if (error) return res.status(404).send(error.details[0].message);
-    
+    // if (error) return res.status(404).send(error.details[0].message);
+    // console.error(error.errors)
     category.name = req.body.name
     res.send(category)
     
