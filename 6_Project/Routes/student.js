@@ -1,28 +1,10 @@
 const express = require('express');
-const Joi = require('Joi');
-const mongoose = require('mongoose')
 
+
+const {Students,validateData}=require('../Models/studentsModels')
 const router = express.Router()
-
 router.use(express.json())
 // router.use(mymiddelware)
-
-
-const studentSchema = new mongoose.Schema({
-    name: { type: String, required: true, minlength: 4, maxlength: 30 },
-    isEnrolled: {
-        type: Boolean, default: false
-    },
-    Phone: {
-        type: String,
-        required: true,
-        minlength: 10,
-        maxlength: 12
-    }
-
-
-})
-const Students = mongoose.model('students', studentSchema)
 
 
 
@@ -72,12 +54,5 @@ router.get('/:id', async (req, res) => {
     res.send(students);
 });
 
-function validateData(students) {
-    const schema = {
-        name: Joi.string().min(3).max(20).required(),
-        Phone:Joi.string().min(10).max(13).required(),
-        isEnrolled:Joi.boolean()
-    }
-    return Joi.validate(students, schema)
-}
+
 module.exports = router
